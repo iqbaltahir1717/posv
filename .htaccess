@@ -1,0 +1,21 @@
+Options -Multiviews
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
+Options -Indexes
+# asset not found code
+
+<Files setting.php>
+    order allow,deny
+    Deny from all
+</Files>
+<Files helper.php>
+    order allow,deny
+    Deny from all
+</Files>
+<Files ~ "^\.htaccess">
+    Order allow,deny
+    Deny from all
+</Files>

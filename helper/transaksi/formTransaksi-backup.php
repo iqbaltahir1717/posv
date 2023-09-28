@@ -49,6 +49,37 @@
                         value="<?= $kode;?>">
                 </div>
                 <div class="col-sm-6 mb-3">
+                    <h6 class="text-right pt-1">Pelanggan <small class="text-danger">* Opsional</small></h6>
+                </div>
+                <div class="col-sm-4 mb-3">
+                    <div class="form-group">
+                        <select class="form-control select2" name="id_pelanggan" style="width: 100%;">
+                            <option selected="selected" value="0">- pilih -</option>
+                            <?php
+                                $no =1;
+                                $sql = "SELECT * FROM pelanggan ORDER BY nama_pelanggan ASC";
+                                $row = $connectdb->prepare($sql);
+                                $row->execute();
+                                $hasil = $row->fetchAll(PDO::FETCH_OBJ);
+                                foreach($hasil as $r) {
+                            ?>
+                            <option value="<?= $r->id;?>"><?= $r->nama_pelanggan;?></option>
+                            <?php }?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-2 mb-3">
+                    <div class="form-group">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary btn-md btn-block" data-toggle="modal"
+                            data-target="#modelIdPelanggan">
+                            <i class="fas fa-user-plus"></i>
+                        </button>
+                        <!-- Modal -->
+                    </div>
+                </div>
+
+                <div class="col-sm-6 mb-3">
                     <h6 class="text-right mt-2">Grand Total</h6>
                 </div>
                 <div class="col-sm-6 mb-3">

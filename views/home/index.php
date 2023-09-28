@@ -23,7 +23,7 @@
             </span>
             <div class="info-box-content">
                 <span class="info-box-text font-weight-bold"><?= $toko->nama_toko;?></span>
-                <span class="info-box-text"><?= $toko->tlp;?></span>
+                <span class="info-box-text">Selamat Datang</span>
             </div>
         </div>
     </div>
@@ -104,6 +104,67 @@
 </div>
 <br>
 <?php if (!empty($_SESSION['codekop_session']['akses'] == 1)) {?>
+
+    <?php 
+        $sqlWhere = '';
+        $sql = "SELECT SUM(jumlah) as qty, SUM(beli) as beli, SUM(total) as jual 
+                FROM penjualan 
+                WHERE penjualan.periode = ? $sqlWhere ORDER BY id DESC";
+        $row = $connectdb->prepare($sql);
+        $row->execute(array(date('Y-m')));
+        $hasil = $row->fetch(PDO::FETCH_OBJ);
+        $qty = $hasil->qty;
+        $beli = $hasil->beli;
+        $jual = $hasil->jual;
+    ?>
+
+<div class="row">
+    <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-2">
+            <span class="info-box-icon bg-info elevation-1">
+                <i class="fas fa-cubes"></i>
+            </span>
+            <div class="info-box-content">
+                <span class="info-box-text font-weight-bold">Total Barang Terjual</span>
+                <span class="info-box-text"><?= $qty;?></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-2">
+            <span class="info-box-icon bg-danger elevation-1">
+                <i class="fas fa-money-bill"></i>
+            </span>
+            <div class="info-box-content">
+                <span class="info-box-text font-weight-bold">Total Modal</span>
+                <span class="info-box-text">Rp. <?= number_format($beli ?? 0);?></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-2">
+            <span class="info-box-icon bg-gray elevation-1">
+                <i class="fas fa-money-bill"></i>
+            </span>
+            <div class="info-box-content">
+                <span class="info-box-text font-weight-bold">Total Penjualan</span>
+                <span class="info-box-text">Rp. <?= number_format($jual ?? 0);?></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-2">
+            <span class="info-box-icon bg-gradient-success elevation-1">
+                <i class="fas fa-money-bill"></i>
+            </span>
+            <div class="info-box-content">
+                <span class="info-box-text font-weight-bold">Keuntungan Bersih</span>
+                <span class="info-box-text">Rp. <?= number_format(($jual-$beli) ?? 0);?></span>
+            </div>
+        </div>
+    </div>
+</div> <br>
+
 <?php if(!empty($_POST['thn'])){ $thn = $_POST['thn'];  }else{ $thn = date('Y'); }?>
 <div class="row">
     <div class="col-lg-12">

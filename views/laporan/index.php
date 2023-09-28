@@ -302,7 +302,7 @@
                     "url": "<?= $baseURL.'/helper/data.php?aksi=nota-jual&hari=yes&tgla='.getGet('tgla', true).'&tglb='.getGet('tglb', true);?>", // URL file untuk proses select datanya
                 <?php }else{?>
                     "url": "<?= $baseURL.'/helper/data.php?aksi=nota-jual';?>", // URL file untuk proses select datanya
-                <?php }?>
+                <?php }?>,
                 "type": "POST"
             },
             "deferRender": true,
@@ -326,12 +326,12 @@
                     }
                 },
                 { "data": "jumlah" },
-                <?php if(!empty(in_array($_SESSION['codekop_session']['akses'],[1]))){?>
+                <?php if(!empty(in_array($_SESSION['codekop_session']['akses'],[1]))){?>,
                 {
                     data: 'beli',
                     render: $.fn.dataTable.render.number( ',', '.', 0 ,'Rp' )
                 },
-                <?php }?>
+                <?php }?>,
                 {
                     data: 'total',
                     render: $.fn.dataTable.render.number( ',', '.', 0 ,'Rp' )

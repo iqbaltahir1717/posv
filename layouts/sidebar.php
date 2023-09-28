@@ -53,7 +53,7 @@
                 <li class="nav-item">
                     <a href="<?= $baseURL;?>laporan/index.php" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Nota Penjualan</p>
+                        <p>Nota Pelaporan</p>
                     </a>
                 </li>
                 <?php }?>
@@ -68,7 +68,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-cubes"></i>
+                        <i class="nav-icon fas fa-clipboard"></i>
                         <p>
                             Laporan
                             <i class="right fas fa-angle-left"></i>
@@ -79,7 +79,7 @@
                         <li class="nav-item">
                             <a href="<?= $baseURL;?>laporan/index.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Nota Penjualan</p>
+                                <p>Nota Pelaporan</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -112,22 +112,81 @@
                 <?php }?>
                 <?php if(!empty(in_array($_SESSION['codekop_session']['akses'], [1,6]))){?>
                 <li class="nav-header">Input Data</li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-cubes"></i>
+                <!-- <li class="nav-item"> -->
+                    <!-- <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-database"></i>
                         <p>
                             Data Master
                             <i class="right fas fa-angle-left"></i>
                         </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
+                    </a> -->
+                    <!-- <ul class="nav nav-treeview"> -->
+                        <!-- <li class="nav-item">
                             <a href="<?= $baseURL;?>barang/index.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Barang</p>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-cubes"></i>
+                                <p>
+                                    Barang
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview"> 
+                                <li class="nav-item">
+                                    <a href="<?= $baseURL;?>barang/index.php" class="nav-link">
+                                        <i class="fas fa-check nav-icon"></i>
+                                        <p>Semua Barang</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= $baseURL;?>barang/index.php?categories_ids=7" class="nav-link">
+                                        <i class="fas fa-check nav-icon"></i>
+                                        <p>Accsesories</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= $baseURL;?>barang/index.php?categories_ids=5" class="nav-link">
+                                        <i class="fas fa-check nav-icon"></i>
+                                        <p>Catridge</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= $baseURL;?>barang/index.php?categories_ids=6" class="nav-link">
+                                        <i class="fas fa-check nav-icon"></i>
+                                        <p>Coil</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= $baseURL;?>barang/index.php?categories_ids=2" class="nav-link">
+                                        <i class="fas fa-check nav-icon"></i>
+                                        <p>Liquid Freebase</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= $baseURL;?>barang/index.php?categories_ids=1" class="nav-link">
+                                        <i class="fas fa-check nav-icon"></i>
+                                        <p>Liquid Saltnic</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= $baseURL;?>barang/index.php?categories_ids=3" class="nav-link">
+                                        <i class="fas fa-check nav-icon"></i>
+                                        <p>MOD</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= $baseURL;?>barang/index.php?categories_ids=4" class="nav-link">
+                                        <i class="fas fa-check nav-icon"></i>
+                                        <p>POD</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- <li class="nav-item">
                             <a href="<?= $baseURL;?>barang_kategori/index.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Kategori</p>
@@ -150,9 +209,9 @@
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Pelanggan</p>
                             </a>
-                        </li>
-                    </ul>
-                </li>
+                        </li> -->
+                    <!-- </ul> -->
+                <!-- </li> -->
                 <?php }?>
                 <?php if(!empty($_SESSION['codekop_session']['akses'] == 1)){?>
                 <li class="nav-header">Administrator</li>

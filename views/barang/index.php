@@ -67,6 +67,8 @@
     </div>
 </div>
 
+<?php if($_GET['categories_ids'] == 1){  ?>
+
 <script>
 var tabel = null;
 $(document).ready(function() {
@@ -79,10 +81,9 @@ $(document).ready(function() {
             [0, 'DESC']
         ], // Default sortingnya berdasarkan kolom / field ke 0 (paling pertama)
         "ajax": {
-            <?php if (isset($_GET['stok'])) {?> "url": "<?= $baseURL.'/helper/data.php?aksi=barang&stok=yes';?>", // URL file untuk proses select datanya
-            <?php } else {?> "url": "<?= $baseURL.'/helper/data.php?aksi=barang';?>", // URL file untuk proses select datanya
-            <?php }?> "type": "POST"
-        },
+            <?php if (isset($_GET['stok'])) {?> "url": "<?= $baseURL.'/helper/data.php?aksi=barang_1&stok=yes';?>", // URL file untuk proses select datanya
+            <?php } else {?> "url": "<?= $baseURL.'/helper/data.php?aksi=barang_1';?>", // URL file untuk proses select datanya
+            <?php }?> "type": "POST"},
         "deferRender": true,
         "aLengthMenu": [
             [10, 25, 50],
@@ -166,3 +167,732 @@ $(document).ready(function() {
     });
 });
 </script>
+
+
+<?php  } ?>
+
+<?php if($_GET['categories_ids'] == 2){  ?>
+
+    <script>
+    var tabel = null;
+    $(document).ready(function() {
+        tabel = $('#table-artikel-query').DataTable({
+            "processing": true,
+            "responsive": true,
+            "serverSide": true,
+            "ordering": true, // Set true agar bisa di sorting
+            "order": [
+                [0, 'DESC']
+            ], // Default sortingnya berdasarkan kolom / field ke 0 (paling pertama)
+            "ajax": {
+                <?php if (isset($_GET['stok'])) {?> "url": "<?= $baseURL.'/helper/data.php?aksi=barang_2&stok=yes';?>", // URL file untuk proses select datanya
+                <?php } else {?> "url": "<?= $baseURL.'/helper/data.php?aksi=barang_2';?>", // URL file untuk proses select datanya
+                <?php }?> "type": "POST"},
+            "deferRender": true,
+            "aLengthMenu": [
+                [10, 25, 50],
+                [10, 25, 50]
+            ], // Combobox Limit
+            "columns": [{
+                    "data": 'id',
+                    "sortable": false,
+                    render: function(data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                },
+                {
+                    "data": "id_barang"
+                },
+                {
+                    "data": "gambar",
+                    "render": function(data, type, row, meta) {
+                        if (row.gambar !== null) {
+                            return `<center>
+                                            <a href="<?= $baseURL;?>assets/uploads/barang/${row.gambar}" data-toggle="lightbox" 
+                                                data-title="${row.nama_barang}" data-gallery="gallery">
+                                                <img src="<?= $baseURL;?>assets/uploads/barang/${row.gambar}" 
+                                                    alt="${row.nama_barang}" class="img-fluid" width="80"/>
+                                            </a>
+                                        </center>`;
+                        } else {
+                            return `<center>
+                                            <a href="<?= $baseURL;?>assets/dist/img/no-image.jpg" data-toggle="lightbox" 
+                                                data-title="${row.nama_barang}" data-gallery="gallery">
+                                                <img src="<?= $baseURL;?>assets/dist/img/no-image.jpg" 
+                                                    alt="${row.nama_barang}" class="img-fluid" width="80"/>
+                                            </a>
+                                        </center>`;
+                        }
+                    }
+                },
+                {
+                    "data": "nama_barang"
+                },
+                {
+                    "data": "nama_kategori"
+                },
+                {
+                    "data": "merk"
+                },
+                <?php if (!empty(in_array($_SESSION['codekop_session']['akses'], [1]))) {?> {
+                    data: 'harga_beli',
+                    render: $.fn.dataTable.render.number(',', '.', 0, 'Rp')
+                },
+                <?php }?> {
+                    data: 'harga_jual',
+                    render: $.fn.dataTable.render.number(',', '.', 0, 'Rp')
+                },
+                {
+                    "data": "satuan_barang"
+                },
+                {
+                    "data": "stok"
+                },
+                <?php if (!empty(in_array($_SESSION['codekop_session']['akses'], [1]))) {?> {
+                    "data": "id",
+                    "render": function(data, type, row, meta) {
+                        if (row.stok > 5) {
+                            return `<a href="edit.php?id=${row.id}" 
+                                            class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                        <a href="proses.php?aksi=delete&id=${row.id}" onclick="javascript:return confirm('Data ingin dihapus ?');"
+                                            class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>`;
+                        } else {
+                            return `<a href="<?= $baseURL;?>transaksi_beli/proses.php?aksi=carikeranjang&id=${row.id}&qty=1" 
+                                            class="btn btn-success btn-block btn-sm"><i class="fa fa-plus"></i> Order</a>
+                                        <a href="edit.php?id=${row.id}" 
+                                            class="btn btn-primary btn-sm mt-2"><i class="fa fa-edit"></i></a>
+                                        <a href="proses.php?aksi=delete&id=${row.id}" onclick="javascript:return confirm('Data ingin dihapus ?');"
+                                            class="btn btn-danger btn-sm mt-2"><i class="fa fa-trash"></i></a>`;
+                        }
+                    }
+                },
+                <?php }?>
+            ],
+        });
+    });
+    </script>
+
+
+<?php  } ?>
+
+<?php if($_GET['categories_ids'] == 3){  ?>
+
+    <script>
+    var tabel = null;
+    $(document).ready(function() {
+        tabel = $('#table-artikel-query').DataTable({
+            "processing": true,
+            "responsive": true,
+            "serverSide": true,
+            "ordering": true, // Set true agar bisa di sorting
+            "order": [
+                [0, 'DESC']
+            ], // Default sortingnya berdasarkan kolom / field ke 0 (paling pertama)
+            "ajax": {
+                <?php if (isset($_GET['stok'])) {?> "url": "<?= $baseURL.'/helper/data.php?aksi=barang_3&stok=yes';?>", // URL file untuk proses select datanya
+                <?php } else {?> "url": "<?= $baseURL.'/helper/data.php?aksi=barang_3';?>", // URL file untuk proses select datanya
+                <?php }?> "type": "POST"},
+            "deferRender": true,
+            "aLengthMenu": [
+                [10, 25, 50],
+                [10, 25, 50]
+            ], // Combobox Limit
+            "columns": [{
+                    "data": 'id',
+                    "sortable": false,
+                    render: function(data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                },
+                {
+                    "data": "id_barang"
+                },
+                {
+                    "data": "gambar",
+                    "render": function(data, type, row, meta) {
+                        if (row.gambar !== null) {
+                            return `<center>
+                                            <a href="<?= $baseURL;?>assets/uploads/barang/${row.gambar}" data-toggle="lightbox" 
+                                                data-title="${row.nama_barang}" data-gallery="gallery">
+                                                <img src="<?= $baseURL;?>assets/uploads/barang/${row.gambar}" 
+                                                    alt="${row.nama_barang}" class="img-fluid" width="80"/>
+                                            </a>
+                                        </center>`;
+                        } else {
+                            return `<center>
+                                            <a href="<?= $baseURL;?>assets/dist/img/no-image.jpg" data-toggle="lightbox" 
+                                                data-title="${row.nama_barang}" data-gallery="gallery">
+                                                <img src="<?= $baseURL;?>assets/dist/img/no-image.jpg" 
+                                                    alt="${row.nama_barang}" class="img-fluid" width="80"/>
+                                            </a>
+                                        </center>`;
+                        }
+                    }
+                },
+                {
+                    "data": "nama_barang"
+                },
+                {
+                    "data": "nama_kategori"
+                },
+                {
+                    "data": "merk"
+                },
+                <?php if (!empty(in_array($_SESSION['codekop_session']['akses'], [1]))) {?> {
+                    data: 'harga_beli',
+                    render: $.fn.dataTable.render.number(',', '.', 0, 'Rp')
+                },
+                <?php }?> {
+                    data: 'harga_jual',
+                    render: $.fn.dataTable.render.number(',', '.', 0, 'Rp')
+                },
+                {
+                    "data": "satuan_barang"
+                },
+                {
+                    "data": "stok"
+                },
+                <?php if (!empty(in_array($_SESSION['codekop_session']['akses'], [1]))) {?> {
+                    "data": "id",
+                    "render": function(data, type, row, meta) {
+                        if (row.stok > 5) {
+                            return `<a href="edit.php?id=${row.id}" 
+                                            class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                        <a href="proses.php?aksi=delete&id=${row.id}" onclick="javascript:return confirm('Data ingin dihapus ?');"
+                                            class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>`;
+                        } else {
+                            return `<a href="<?= $baseURL;?>transaksi_beli/proses.php?aksi=carikeranjang&id=${row.id}&qty=1" 
+                                            class="btn btn-success btn-block btn-sm"><i class="fa fa-plus"></i> Order</a>
+                                        <a href="edit.php?id=${row.id}" 
+                                            class="btn btn-primary btn-sm mt-2"><i class="fa fa-edit"></i></a>
+                                        <a href="proses.php?aksi=delete&id=${row.id}" onclick="javascript:return confirm('Data ingin dihapus ?');"
+                                            class="btn btn-danger btn-sm mt-2"><i class="fa fa-trash"></i></a>`;
+                        }
+                    }
+                },
+                <?php }?>
+            ],
+        });
+    });
+    </script>
+
+
+<?php  } ?>
+
+<?php if($_GET['categories_ids'] == 4){  ?>
+
+    <script>
+    var tabel = null;
+    $(document).ready(function() {
+        tabel = $('#table-artikel-query').DataTable({
+            "processing": true,
+            "responsive": true,
+            "serverSide": true,
+            "ordering": true, // Set true agar bisa di sorting
+            "order": [
+                [0, 'DESC']
+            ], // Default sortingnya berdasarkan kolom / field ke 0 (paling pertama)
+            "ajax": {
+                <?php if (isset($_GET['stok'])) {?> "url": "<?= $baseURL.'/helper/data.php?aksi=barang_4&stok=yes';?>", // URL file untuk proses select datanya
+                <?php } else {?> "url": "<?= $baseURL.'/helper/data.php?aksi=barang_4';?>", // URL file untuk proses select datanya
+                <?php }?> "type": "POST"},
+            "deferRender": true,
+            "aLengthMenu": [
+                [10, 25, 50],
+                [10, 25, 50]
+            ], // Combobox Limit
+            "columns": [{
+                    "data": 'id',
+                    "sortable": false,
+                    render: function(data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                },
+                {
+                    "data": "id_barang"
+                },
+                {
+                    "data": "gambar",
+                    "render": function(data, type, row, meta) {
+                        if (row.gambar !== null) {
+                            return `<center>
+                                            <a href="<?= $baseURL;?>assets/uploads/barang/${row.gambar}" data-toggle="lightbox" 
+                                                data-title="${row.nama_barang}" data-gallery="gallery">
+                                                <img src="<?= $baseURL;?>assets/uploads/barang/${row.gambar}" 
+                                                    alt="${row.nama_barang}" class="img-fluid" width="80"/>
+                                            </a>
+                                        </center>`;
+                        } else {
+                            return `<center>
+                                            <a href="<?= $baseURL;?>assets/dist/img/no-image.jpg" data-toggle="lightbox" 
+                                                data-title="${row.nama_barang}" data-gallery="gallery">
+                                                <img src="<?= $baseURL;?>assets/dist/img/no-image.jpg" 
+                                                    alt="${row.nama_barang}" class="img-fluid" width="80"/>
+                                            </a>
+                                        </center>`;
+                        }
+                    }
+                },
+                {
+                    "data": "nama_barang"
+                },
+                {
+                    "data": "nama_kategori"
+                },
+                {
+                    "data": "merk"
+                },
+                <?php if (!empty(in_array($_SESSION['codekop_session']['akses'], [1]))) {?> {
+                    data: 'harga_beli',
+                    render: $.fn.dataTable.render.number(',', '.', 0, 'Rp')
+                },
+                <?php }?> {
+                    data: 'harga_jual',
+                    render: $.fn.dataTable.render.number(',', '.', 0, 'Rp')
+                },
+                {
+                    "data": "satuan_barang"
+                },
+                {
+                    "data": "stok"
+                },
+                <?php if (!empty(in_array($_SESSION['codekop_session']['akses'], [1]))) {?> {
+                    "data": "id",
+                    "render": function(data, type, row, meta) {
+                        if (row.stok > 5) {
+                            return `<a href="edit.php?id=${row.id}" 
+                                            class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                        <a href="proses.php?aksi=delete&id=${row.id}" onclick="javascript:return confirm('Data ingin dihapus ?');"
+                                            class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>`;
+                        } else {
+                            return `<a href="<?= $baseURL;?>transaksi_beli/proses.php?aksi=carikeranjang&id=${row.id}&qty=1" 
+                                            class="btn btn-success btn-block btn-sm"><i class="fa fa-plus"></i> Order</a>
+                                        <a href="edit.php?id=${row.id}" 
+                                            class="btn btn-primary btn-sm mt-2"><i class="fa fa-edit"></i></a>
+                                        <a href="proses.php?aksi=delete&id=${row.id}" onclick="javascript:return confirm('Data ingin dihapus ?');"
+                                            class="btn btn-danger btn-sm mt-2"><i class="fa fa-trash"></i></a>`;
+                        }
+                    }
+                },
+                <?php }?>
+            ],
+        });
+    });
+    </script>
+
+<?php  } ?>
+
+<?php if($_GET['categories_ids'] == 5){  ?>
+
+    <script>
+    var tabel = null;
+    $(document).ready(function() {
+        tabel = $('#table-artikel-query').DataTable({
+            "processing": true,
+            "responsive": true,
+            "serverSide": true,
+            "ordering": true, // Set true agar bisa di sorting
+            "order": [
+                [0, 'DESC']
+            ], // Default sortingnya berdasarkan kolom / field ke 0 (paling pertama)
+            "ajax": {
+                <?php if (isset($_GET['stok'])) {?> "url": "<?= $baseURL.'/helper/data.php?aksi=barang_5&stok=yes';?>", // URL file untuk proses select datanya
+                <?php } else {?> "url": "<?= $baseURL.'/helper/data.php?aksi=barang_5';?>", // URL file untuk proses select datanya
+                <?php }?> "type": "POST"},
+            "deferRender": true,
+            "aLengthMenu": [
+                [10, 25, 50],
+                [10, 25, 50]
+            ], // Combobox Limit
+            "columns": [{
+                    "data": 'id',
+                    "sortable": false,
+                    render: function(data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                },
+                {
+                    "data": "id_barang"
+                },
+                {
+                    "data": "gambar",
+                    "render": function(data, type, row, meta) {
+                        if (row.gambar !== null) {
+                            return `<center>
+                                            <a href="<?= $baseURL;?>assets/uploads/barang/${row.gambar}" data-toggle="lightbox" 
+                                                data-title="${row.nama_barang}" data-gallery="gallery">
+                                                <img src="<?= $baseURL;?>assets/uploads/barang/${row.gambar}" 
+                                                    alt="${row.nama_barang}" class="img-fluid" width="80"/>
+                                            </a>
+                                        </center>`;
+                        } else {
+                            return `<center>
+                                            <a href="<?= $baseURL;?>assets/dist/img/no-image.jpg" data-toggle="lightbox" 
+                                                data-title="${row.nama_barang}" data-gallery="gallery">
+                                                <img src="<?= $baseURL;?>assets/dist/img/no-image.jpg" 
+                                                    alt="${row.nama_barang}" class="img-fluid" width="80"/>
+                                            </a>
+                                        </center>`;
+                        }
+                    }
+                },
+                {
+                    "data": "nama_barang"
+                },
+                {
+                    "data": "nama_kategori"
+                },
+                {
+                    "data": "merk"
+                },
+                <?php if (!empty(in_array($_SESSION['codekop_session']['akses'], [1]))) {?> {
+                    data: 'harga_beli',
+                    render: $.fn.dataTable.render.number(',', '.', 0, 'Rp')
+                },
+                <?php }?> {
+                    data: 'harga_jual',
+                    render: $.fn.dataTable.render.number(',', '.', 0, 'Rp')
+                },
+                {
+                    "data": "satuan_barang"
+                },
+                {
+                    "data": "stok"
+                },
+                <?php if (!empty(in_array($_SESSION['codekop_session']['akses'], [1]))) {?> {
+                    "data": "id",
+                    "render": function(data, type, row, meta) {
+                        if (row.stok > 5) {
+                            return `<a href="edit.php?id=${row.id}" 
+                                            class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                        <a href="proses.php?aksi=delete&id=${row.id}" onclick="javascript:return confirm('Data ingin dihapus ?');"
+                                            class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>`;
+                        } else {
+                            return `<a href="<?= $baseURL;?>transaksi_beli/proses.php?aksi=carikeranjang&id=${row.id}&qty=1" 
+                                            class="btn btn-success btn-block btn-sm"><i class="fa fa-plus"></i> Order</a>
+                                        <a href="edit.php?id=${row.id}" 
+                                            class="btn btn-primary btn-sm mt-2"><i class="fa fa-edit"></i></a>
+                                        <a href="proses.php?aksi=delete&id=${row.id}" onclick="javascript:return confirm('Data ingin dihapus ?');"
+                                            class="btn btn-danger btn-sm mt-2"><i class="fa fa-trash"></i></a>`;
+                        }
+                    }
+                },
+                <?php }?>
+            ],
+        });
+    });
+    </script>
+
+
+<?php  } ?>
+
+<?php if($_GET['categories_ids'] == 6){  ?>
+
+    <script>
+    var tabel = null;
+    $(document).ready(function() {
+        tabel = $('#table-artikel-query').DataTable({
+            "processing": true,
+            "responsive": true,
+            "serverSide": true,
+            "ordering": true, // Set true agar bisa di sorting
+            "order": [
+                [0, 'DESC']
+            ], // Default sortingnya berdasarkan kolom / field ke 0 (paling pertama)
+            "ajax": {
+                <?php if (isset($_GET['stok'])) {?> "url": "<?= $baseURL.'/helper/data.php?aksi=barang_6&stok=yes';?>", // URL file untuk proses select datanya
+                <?php } else {?> "url": "<?= $baseURL.'/helper/data.php?aksi=barang_6';?>", // URL file untuk proses select datanya
+                <?php }?> "type": "POST"},
+            "deferRender": true,
+            "aLengthMenu": [
+                [10, 25, 50],
+                [10, 25, 50]
+            ], // Combobox Limit
+            "columns": [{
+                    "data": 'id',
+                    "sortable": false,
+                    render: function(data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                },
+                {
+                    "data": "id_barang"
+                },
+                {
+                    "data": "gambar",
+                    "render": function(data, type, row, meta) {
+                        if (row.gambar !== null) {
+                            return `<center>
+                                            <a href="<?= $baseURL;?>assets/uploads/barang/${row.gambar}" data-toggle="lightbox" 
+                                                data-title="${row.nama_barang}" data-gallery="gallery">
+                                                <img src="<?= $baseURL;?>assets/uploads/barang/${row.gambar}" 
+                                                    alt="${row.nama_barang}" class="img-fluid" width="80"/>
+                                            </a>
+                                        </center>`;
+                        } else {
+                            return `<center>
+                                            <a href="<?= $baseURL;?>assets/dist/img/no-image.jpg" data-toggle="lightbox" 
+                                                data-title="${row.nama_barang}" data-gallery="gallery">
+                                                <img src="<?= $baseURL;?>assets/dist/img/no-image.jpg" 
+                                                    alt="${row.nama_barang}" class="img-fluid" width="80"/>
+                                            </a>
+                                        </center>`;
+                        }
+                    }
+                },
+                {
+                    "data": "nama_barang"
+                },
+                {
+                    "data": "nama_kategori"
+                },
+                {
+                    "data": "merk"
+                },
+                <?php if (!empty(in_array($_SESSION['codekop_session']['akses'], [1]))) {?> {
+                    data: 'harga_beli',
+                    render: $.fn.dataTable.render.number(',', '.', 0, 'Rp')
+                },
+                <?php }?> {
+                    data: 'harga_jual',
+                    render: $.fn.dataTable.render.number(',', '.', 0, 'Rp')
+                },
+                {
+                    "data": "satuan_barang"
+                },
+                {
+                    "data": "stok"
+                },
+                <?php if (!empty(in_array($_SESSION['codekop_session']['akses'], [1]))) {?> {
+                    "data": "id",
+                    "render": function(data, type, row, meta) {
+                        if (row.stok > 5) {
+                            return `<a href="edit.php?id=${row.id}" 
+                                            class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                        <a href="proses.php?aksi=delete&id=${row.id}" onclick="javascript:return confirm('Data ingin dihapus ?');"
+                                            class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>`;
+                        } else {
+                            return `<a href="<?= $baseURL;?>transaksi_beli/proses.php?aksi=carikeranjang&id=${row.id}&qty=1" 
+                                            class="btn btn-success btn-block btn-sm"><i class="fa fa-plus"></i> Order</a>
+                                        <a href="edit.php?id=${row.id}" 
+                                            class="btn btn-primary btn-sm mt-2"><i class="fa fa-edit"></i></a>
+                                        <a href="proses.php?aksi=delete&id=${row.id}" onclick="javascript:return confirm('Data ingin dihapus ?');"
+                                            class="btn btn-danger btn-sm mt-2"><i class="fa fa-trash"></i></a>`;
+                        }
+                    }
+                },
+                <?php }?>
+            ],
+        });
+    });
+    </script>
+
+
+<?php  } ?>
+
+<?php if($_GET['categories_ids'] == 7){  ?>
+
+<script>
+var tabel = null;
+$(document).ready(function() {
+    tabel = $('#table-artikel-query').DataTable({
+        "processing": true,
+        "responsive": true,
+        "serverSide": true,
+        "ordering": true, // Set true agar bisa di sorting
+        "order": [
+            [0, 'DESC']
+        ], // Default sortingnya berdasarkan kolom / field ke 0 (paling pertama)
+        "ajax": {
+            <?php if (isset($_GET['stok'])) {?> "url": "<?= $baseURL.'/helper/data.php?aksi=barang_7&stok=yes';?>", // URL file untuk proses select datanya
+            <?php } else {?> "url": "<?= $baseURL.'/helper/data.php?aksi=barang_7';?>", // URL file untuk proses select datanya
+            <?php }?> "type": "POST"},
+        "deferRender": true,
+        "aLengthMenu": [
+            [10, 25, 50],
+            [10, 25, 50]
+        ], // Combobox Limit
+        "columns": [{
+                "data": 'id',
+                "sortable": false,
+                render: function(data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
+            {
+                "data": "id_barang"
+            },
+            {
+                "data": "gambar",
+                "render": function(data, type, row, meta) {
+                    if (row.gambar !== null) {
+                        return `<center>
+                                        <a href="<?= $baseURL;?>assets/uploads/barang/${row.gambar}" data-toggle="lightbox" 
+                                            data-title="${row.nama_barang}" data-gallery="gallery">
+                                            <img src="<?= $baseURL;?>assets/uploads/barang/${row.gambar}" 
+                                                alt="${row.nama_barang}" class="img-fluid" width="80"/>
+                                        </a>
+                                    </center>`;
+                    } else {
+                        return `<center>
+                                        <a href="<?= $baseURL;?>assets/dist/img/no-image.jpg" data-toggle="lightbox" 
+                                            data-title="${row.nama_barang}" data-gallery="gallery">
+                                            <img src="<?= $baseURL;?>assets/dist/img/no-image.jpg" 
+                                                alt="${row.nama_barang}" class="img-fluid" width="80"/>
+                                        </a>
+                                    </center>`;
+                    }
+                }
+            },
+            {
+                "data": "nama_barang"
+            },
+            {
+                "data": "nama_kategori"
+            },
+            {
+                "data": "merk"
+            },
+            <?php if (!empty(in_array($_SESSION['codekop_session']['akses'], [1]))) {?> {
+                data: 'harga_beli',
+                render: $.fn.dataTable.render.number(',', '.', 0, 'Rp')
+            },
+            <?php }?> {
+                data: 'harga_jual',
+                render: $.fn.dataTable.render.number(',', '.', 0, 'Rp')
+            },
+            {
+                "data": "satuan_barang"
+            },
+            {
+                "data": "stok"
+            },
+            <?php if (!empty(in_array($_SESSION['codekop_session']['akses'], [1]))) {?> {
+                "data": "id",
+                "render": function(data, type, row, meta) {
+                    if (row.stok > 5) {
+                        return `<a href="edit.php?id=${row.id}" 
+                                        class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                    <a href="proses.php?aksi=delete&id=${row.id}" onclick="javascript:return confirm('Data ingin dihapus ?');"
+                                        class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>`;
+                    } else {
+                        return `<a href="<?= $baseURL;?>transaksi_beli/proses.php?aksi=carikeranjang&id=${row.id}&qty=1" 
+                                        class="btn btn-success btn-block btn-sm"><i class="fa fa-plus"></i> Order</a>
+                                    <a href="edit.php?id=${row.id}" 
+                                        class="btn btn-primary btn-sm mt-2"><i class="fa fa-edit"></i></a>
+                                    <a href="proses.php?aksi=delete&id=${row.id}" onclick="javascript:return confirm('Data ingin dihapus ?');"
+                                        class="btn btn-danger btn-sm mt-2"><i class="fa fa-trash"></i></a>`;
+                    }
+                }
+            },
+            <?php }?>
+        ],
+    });
+});
+</script>
+
+
+<?php  } ?>
+
+<?php if($_GET['categories_ids'] == null){  ?>
+
+    <script>
+    var tabel = null;
+    $(document).ready(function() {
+        tabel = $('#table-artikel-query').DataTable({
+            "processing": true,
+            "responsive": true,
+            "serverSide": true,
+            "ordering": true, // Set true agar bisa di sorting
+            "order": [
+                [0, 'DESC']
+            ], // Default sortingnya berdasarkan kolom / field ke 0 (paling pertama)
+            "ajax": {
+                <?php if (isset($_GET['stok'])) {?> "url": "<?= $baseURL.'/helper/data.php?aksi=barang&stok=yes';?>", // URL file untuk proses select datanya
+                <?php } else {?> "url": "<?= $baseURL.'/helper/data.php?aksi=barang';?>", // URL file untuk proses select datanya
+                <?php }?> "type": "POST"},
+            "deferRender": true,
+            "aLengthMenu": [
+                [10, 25, 50],
+                [10, 25, 50]
+            ], // Combobox Limit
+            "columns": [{
+                    "data": 'id',
+                    "sortable": false,
+                    render: function(data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                },
+                {
+                    "data": "id_barang"
+                },
+                {
+                    "data": "gambar",
+                    "render": function(data, type, row, meta) {
+                        if (row.gambar !== null) {
+                            return `<center>
+                                            <a href="<?= $baseURL;?>assets/uploads/barang/${row.gambar}" data-toggle="lightbox" 
+                                                data-title="${row.nama_barang}" data-gallery="gallery">
+                                                <img src="<?= $baseURL;?>assets/uploads/barang/${row.gambar}" 
+                                                    alt="${row.nama_barang}" class="img-fluid" width="80"/>
+                                            </a>
+                                        </center>`;
+                        } else {
+                            return `<center>
+                                            <a href="<?= $baseURL;?>assets/dist/img/no-image.jpg" data-toggle="lightbox" 
+                                                data-title="${row.nama_barang}" data-gallery="gallery">
+                                                <img src="<?= $baseURL;?>assets/dist/img/no-image.jpg" 
+                                                    alt="${row.nama_barang}" class="img-fluid" width="80"/>
+                                            </a>
+                                        </center>`;
+                        }
+                    }
+                },
+                {
+                    "data": "nama_barang"
+                },
+                {
+                    "data": "nama_kategori"
+                },
+                {
+                    "data": "merk"
+                },
+                <?php if (!empty(in_array($_SESSION['codekop_session']['akses'], [1]))) {?> {
+                    data: 'harga_beli',
+                    render: $.fn.dataTable.render.number(',', '.', 0, 'Rp')
+                },
+                <?php }?> {
+                    data: 'harga_jual',
+                    render: $.fn.dataTable.render.number(',', '.', 0, 'Rp')
+                },
+                {
+                    "data": "satuan_barang"
+                },
+                {
+                    "data": "stok"
+                },
+                <?php if (!empty(in_array($_SESSION['codekop_session']['akses'], [1]))) {?> {
+                    "data": "id",
+                    "render": function(data, type, row, meta) {
+                        if (row.stok > 5) {
+                            return `<a href="edit.php?id=${row.id}" 
+                                            class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                        <a href="proses.php?aksi=delete&id=${row.id}" onclick="javascript:return confirm('Data ingin dihapus ?');"
+                                            class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>`;
+                        } else {
+                            return `<a href="<?= $baseURL;?>transaksi_beli/proses.php?aksi=carikeranjang&id=${row.id}&qty=1" 
+                                            class="btn btn-success btn-block btn-sm"><i class="fa fa-plus"></i> Order</a>
+                                        <a href="edit.php?id=${row.id}" 
+                                            class="btn btn-primary btn-sm mt-2"><i class="fa fa-edit"></i></a>
+                                        <a href="proses.php?aksi=delete&id=${row.id}" onclick="javascript:return confirm('Data ingin dihapus ?');"
+                                            class="btn btn-danger btn-sm mt-2"><i class="fa fa-trash"></i></a>`;
+                        }
+                    }
+                },
+                <?php }?>
+            ],
+        });
+    });
+    </script>
+
+<?php  } ?>

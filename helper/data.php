@@ -13,12 +13,14 @@ if(!empty($_SESSION['codekop_session'])) {
     redirect($baseURL.'login.php');
 }
 
+
+//all-categories
 if(!empty(getGet('aksi') == 'barang')) {
     $query  = "SELECT barang_kategori.nama_kategori, barang.* 
                 FROM barang 
                 LEFT JOIN barang_kategori ON barang.id_kategori=barang_kategori.id";
     $search = array('nama_kategori','nama_barang','id_barang','merk','satuan_barang','harga_beli','harga_jual','stok');
-    $where  = null;
+    $where = null;
     if(!empty(getGet('stok', true))) {
         $isWhere = " stok <= 5 ";
     } else {
@@ -26,6 +28,105 @@ if(!empty(getGet('aksi') == 'barang')) {
     }
     echo get_tables_query($connectdb, $query, $search, $where, $isWhere);
 }
+
+if(!empty(getGet('aksi') == 'barang_1')) {
+    $query  = "SELECT barang_kategori.nama_kategori, barang.* 
+                FROM barang 
+                LEFT JOIN barang_kategori ON barang.id_kategori=barang_kategori.id";
+    $search = array('nama_kategori','nama_barang','id_barang','merk','satuan_barang','harga_beli','harga_jual','stok');
+    $where = array('barang.id_kategori'=>1);
+    if(!empty(getGet('stok', true))) {
+        $isWhere = " stok <= 5 ";
+    } else {
+        $isWhere = null;
+    }
+    echo get_tables_query($connectdb, $query, $search, $where, $isWhere);
+}
+
+if(!empty(getGet('aksi') == 'barang_2')) {
+    $query  = "SELECT barang_kategori.nama_kategori, barang.* 
+                FROM barang 
+                LEFT JOIN barang_kategori ON barang.id_kategori=barang_kategori.id";
+    $search = array('nama_kategori','nama_barang','id_barang','merk','satuan_barang','harga_beli','harga_jual','stok');
+    $where = array('barang.id_kategori'=>2);
+    if(!empty(getGet('stok', true))) {
+        $isWhere = " stok <= 5 ";
+    } else {
+        $isWhere = null;
+    }
+    echo get_tables_query($connectdb, $query, $search, $where, $isWhere);
+}
+
+if(!empty(getGet('aksi') == 'barang_3')) {
+    $query  = "SELECT barang_kategori.nama_kategori, barang.* 
+                FROM barang 
+                LEFT JOIN barang_kategori ON barang.id_kategori=barang_kategori.id";
+    $search = array('nama_kategori','nama_barang','id_barang','merk','satuan_barang','harga_beli','harga_jual','stok');
+    $where = array('barang.id_kategori'=>3);
+    if(!empty(getGet('stok', true))) {
+        $isWhere = " stok <= 5 ";
+    } else {
+        $isWhere = null;
+    }
+    echo get_tables_query($connectdb, $query, $search, $where, $isWhere);
+}
+
+if(!empty(getGet('aksi') == 'barang_4')) {
+    $query  = "SELECT barang_kategori.nama_kategori, barang.* 
+                FROM barang 
+                LEFT JOIN barang_kategori ON barang.id_kategori=barang_kategori.id";
+    $search = array('nama_kategori','nama_barang','id_barang','merk','satuan_barang','harga_beli','harga_jual','stok');
+    $where = array('barang.id_kategori'=>4);
+    if(!empty(getGet('stok', true))) {
+        $isWhere = " stok <= 5 ";
+    } else {
+        $isWhere = null;
+    }
+    echo get_tables_query($connectdb, $query, $search, $where, $isWhere);
+}
+
+if(!empty(getGet('aksi') == 'barang_5')) {
+    $query  = "SELECT barang_kategori.nama_kategori, barang.* 
+                FROM barang 
+                LEFT JOIN barang_kategori ON barang.id_kategori=barang_kategori.id";
+    $search = array('nama_kategori','nama_barang','id_barang','merk','satuan_barang','harga_beli','harga_jual','stok');
+    $where = array('barang.id_kategori'=>5);
+    if(!empty(getGet('stok', true))) {
+        $isWhere = " stok <= 5 ";
+    } else {
+        $isWhere = null;
+    }
+    echo get_tables_query($connectdb, $query, $search, $where, $isWhere);
+}
+
+if(!empty(getGet('aksi') == 'barang_6')) {
+    $query  = "SELECT barang_kategori.nama_kategori, barang.* 
+                FROM barang 
+                LEFT JOIN barang_kategori ON barang.id_kategori=barang_kategori.id";
+    $search = array('nama_kategori','nama_barang','id_barang','merk','satuan_barang','harga_beli','harga_jual','stok');
+    $where = array('barang.id_kategori'=>6);
+    if(!empty(getGet('stok', true))) {
+        $isWhere = " stok <= 5 ";
+    } else {
+        $isWhere = null;
+    }
+    echo get_tables_query($connectdb, $query, $search, $where, $isWhere);
+}
+
+if(!empty(getGet('aksi') == 'barang_7')) {
+    $query  = "SELECT barang_kategori.nama_kategori, barang.* 
+                FROM barang 
+                LEFT JOIN barang_kategori ON barang.id_kategori=barang_kategori.id";
+    $search = array('nama_kategori','nama_barang','id_barang','merk','satuan_barang','harga_beli','harga_jual','stok');
+    $where = array('barang.id_kategori'=>7);
+    if(!empty(getGet('stok', true))) {
+        $isWhere = " stok <= 5 ";
+    } else {
+        $isWhere = null;
+    }
+    echo get_tables_query($connectdb, $query, $search, $where, $isWhere);
+}
+
 
 if(!empty(getGet('aksi') == 'nota-jual')) {
     $query = "SELECT users.name, pelanggan.nama_pelanggan, penjualan.* 

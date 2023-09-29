@@ -8,8 +8,8 @@
   |
   | @package   : pos codekop
   | @version   : v.1.0
-  | @author    : fauzan1892
-  | @copyright : Copyright (c) 2021 Codekop.com (https://www.codekop.com)
+  | @author    : Portal Studio
+  | @copyright : Copyright (c) 2021 Codekop.com (https://www.portal-studio.framer.website)
   |
   | free for everyone to development, a pos codekop premium project
   | recommended php version for running is 7.3+

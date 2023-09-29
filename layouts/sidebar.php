@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="<?= $baseURL;?>" class="brand-link">
         <img src="<?= $baseURL.'assets/uploads/toko/'.$toko->logo;?>" alt="AdminLTE Logo"
-            class="brand-image img-circle elevation-3" style="opacity: .8">
+            class="brand-image img-circle elevation-3" style="opacity: .8; width: 34px; object-fit:cover">
         <span class="brand-text font-weight-bold"> <?= $title_apl;?></span>
     </a>
     <!-- Sidebar -->
@@ -12,7 +12,7 @@
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
                 <img src="<?= $baseURL.'assets/uploads/users/'.$users->avatar;?>" class="img-circle elevation-2"
-                    alt="User Image">
+                    alt="User Image"  style="width: 34px; object-fit:cover">
             </div>
             <div class="info">
                 <a href="#" class="d-block"><?= $users->name;?> </a>

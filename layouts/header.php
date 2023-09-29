@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <title><?= $title_apl;?></title>
+    <link rel="icon" href="<?= $baseURL.'assets/uploads/toko/'.$toko->logo;?>">
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />

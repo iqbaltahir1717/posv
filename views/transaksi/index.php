@@ -235,8 +235,7 @@ $(document).ready(function() {
         "ajax": {
             <?php if(isset($_GET['stok'])){?> "url": "<?= $baseURL.'/helper/data.php?aksi=barang&stok=yes';?>", // URL file untuk proses select datanya
             <?php }else{?> "url": "<?= $baseURL.'/helper/data.php?aksi=barang';?>", // URL file untuk proses select datanya
-            <?php }?> "type": "POST"
-        },
+            <?php }?> "type": "POST"},
         "deferRender": true,
         "aLengthMenu": [
             [5, 10, 25, 50],

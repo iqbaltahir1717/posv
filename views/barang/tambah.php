@@ -41,10 +41,12 @@
                                 $row = $connectdb->prepare($sql);
                                 $row->execute();
                                 $hasil = $row->fetchAll(PDO::FETCH_OBJ);
-                                foreach ($hasil as $r) {
+                                foreach ($hasil as $r) { if($_GET['categories_ids'] ==  $r->id) {
                             ?>
-                            <option value="<?= $r->id; ?>"><?= $r->nama_kategori; ?></option>
-                            <?php }?>
+                            <option selected value="<?= $r->id; ?>"><?= $r->nama_kategori; ?></option>
+                            <?php } else {  ?>
+                                <option  value="<?= $r->id; ?>"><?= $r->nama_kategori; ?></option>
+                                <?php }}?>
                         </select>
                     </div>
 

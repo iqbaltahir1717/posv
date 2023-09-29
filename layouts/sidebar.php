@@ -143,9 +143,27 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= $baseURL;?>barang/index.php?categories_ids=7" class="nav-link">
+                                    <a href="<?= $baseURL;?>barang/index.php?categories_ids=1" class="nav-link">
                                         <i class="fas fa-check nav-icon"></i>
-                                        <p>Accsesories</p>
+                                        <p>Liquid Saltnic</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= $baseURL;?>barang/index.php?categories_ids=2" class="nav-link">
+                                        <i class="fas fa-check nav-icon"></i>
+                                        <p>Liquid Freebase</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= $baseURL;?>barang/index.php?categories_ids=3" class="nav-link">
+                                        <i class="fas fa-check nav-icon"></i>
+                                        <p>MOD</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= $baseURL;?>barang/index.php?categories_ids=4" class="nav-link">
+                                        <i class="fas fa-check nav-icon"></i>
+                                        <p>POD</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -161,27 +179,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= $baseURL;?>barang/index.php?categories_ids=2" class="nav-link">
+                                    <a href="<?= $baseURL;?>barang/index.php?categories_ids=7" class="nav-link">
                                         <i class="fas fa-check nav-icon"></i>
-                                        <p>Liquid Freebase</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?= $baseURL;?>barang/index.php?categories_ids=1" class="nav-link">
-                                        <i class="fas fa-check nav-icon"></i>
-                                        <p>Liquid Saltnic</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?= $baseURL;?>barang/index.php?categories_ids=3" class="nav-link">
-                                        <i class="fas fa-check nav-icon"></i>
-                                        <p>MOD</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?= $baseURL;?>barang/index.php?categories_ids=4" class="nav-link">
-                                        <i class="fas fa-check nav-icon"></i>
-                                        <p>POD</p>
+                                        <p>Accsesories</p>
                                     </a>
                                 </li>
                             </ul>

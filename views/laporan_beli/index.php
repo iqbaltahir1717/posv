@@ -223,7 +223,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>No Trx</th>
-                                <th>Kasir</th>
+                                <th>User</th>
                                 <th>Jumlah</th>
                                 <th>Beli</th>
                                 <th>Created At</th>
@@ -281,8 +281,7 @@ $(document).ready(function() {
             <?php if(!empty(getPost('thn', true))){?> "url": "<?= $baseURL.'/helper/data.php?aksi=nota-beli&thn='.getPost('thn', true).'&bln='.getPost('bln', true);?>", // URL file untuk proses select datanya
             <?php }elseif(!empty(getGet('hari', true))){?> "url": "<?= $baseURL.'/helper/data.php?aksi=nota-beli&hari=yes&tgla='.getGet('tgla', true).'&tglb='.getGet('tglb', true);?>", // URL file untuk proses select datanya
             <?php }else{?> "url": "<?= $baseURL.'/helper/data.php?aksi=nota-beli';?>", // URL file untuk proses select datanya
-            <?php }?> "type": "POST"
-        },
+            <?php }?> "type": "POST"},
         "deferRender": true,
         "aLengthMenu": [
             [10, 25, 50],

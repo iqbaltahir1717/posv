@@ -20,7 +20,7 @@
         ?>
         <div class="btn-group" role="group" aria-label="Basic example">
             <?php if (!empty($_SESSION['codekop_session']['akses'] == 1)) {?>
-            <a href="tambah.php" class="btn btn-primary btn-md" role="button">
+            <a href="tambah.php?categories_ids=<?php echo $_GET['categories_ids'] ?>" class="btn btn-primary btn-md" role="button">
                 <i class="fa fa-plus mr-1"></i>Add Barang</a>
             <a href="import.php" class="btn btn-info btn-md" role="button">
                 <i class="fa fa-plus mr-1"></i>Import Barang (Excel)</a>
